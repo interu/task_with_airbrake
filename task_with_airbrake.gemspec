@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake", [">= 0"]
   s.add_development_dependency "airbrake", [">= 0"]
   s.add_dependency "airbrake", [">= 0"]
+  s.add_dependency "rails", [">= 0"]
   # s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"
 end
