@@ -1,18 +1,18 @@
 require "task_with_airbrake/version"
 
 module TaskWithAirbrake
-  def self.task_with_logger_and_notify(*args, &block)
+  def self.execute_task(*args, &block)
     new_block = proc {
       begin
-        echo "[cron START] #{args.inspect} (#{Time.now})"
+        self.echo "[CRON START] #{args.inspect} (#{Time.now})"
 
         yield if block_given?
 
-        echo "[cron END] #{args.inspect} (#{Time.now})"
+        self.echo "[CRON END] #{args.inspect} (#{Time.now})"
       rescue Exception => e
-        echo "[cron ERROR] #{e} (#{Time.now})"
-        e.backtrace.each { |l| echo l }
-        HoptoadNotifier.notify(e)
+        self.echo "[CRON ERROR] #{e} (#{Time.now})"
+        e.backtrace.each { |l| self.echo l }
+        Airbrake.notify(e)
         raise e
       ensure
         Rails.logger.flush
@@ -21,7 +21,7 @@ module TaskWithAirbrake
     task(*args, &new_block)
   end
 
-  def echo(str)
+  def self.echo(str)
     puts(Rails.logger.info(str))
     Rails.logger.flush
   end
