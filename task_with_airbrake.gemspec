@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "task_with_airbrake"
   s.version     = TaskWithAirbrake::VERSION
   s.authors     = ["Teruo Adachi"]
-  s.email       = ["beautybeast07@gmail.com"]
+  s.email       = ["interu@sonicgarden.jp"]
   s.homepage    = ""
   s.summary     = %q{Task with Airbrake}
   s.description = %q{Error handling in rake task}
@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   # specify any dependencies here; for example:
   s.add_development_dependency "rake", [">= 0"]
   s.add_development_dependency "airbrake", [">= 0"]
+  s.add_dependency "airbrake", [">= 0"]
   # s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"
 end
